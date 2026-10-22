@@ -1,0 +1,299 @@
+# najahi
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديميتي - منصة التعليم الشاملة بالمغرب</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>أكاديميتي</span>
+            </div>
+            <nav class="navbar-menu">
+                <a href="#" class="nav-link active">الرئيسية</a>
+                <a href="#courses" class="nav-link">الدروس</a>
+                <a href="#levels" class="nav-link">المستويات</a>
+                <a href="#about" class="nav-link">حول الموقع</a>
+            </nav>
+            <div class="navbar-auth">
+                <button class="btn-login" onclick="openLoginModal()">دخول</button>
+                <button class="btn-signup" onclick="openSignupModal()">تسجيل</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي (Hero Section) -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>منصة التعليم الشاملة للمغرب</h1>
+            <p>دروس وتمارين وشروحات لجميع المستويات من الابتدائي إلى الباكالوريا</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToLevels()">ابدأ الآن</button>
+                <button class="btn-secondary" onclick="scrollToCourses()">استعرض الدروس</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-book-reader"></i>
+        </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-card">
+                <h3>500+</h3>
+                <p>درس شامل</p>
+            </div>
+            <div class="stat-card">
+                <h3>2000+</h3>
+                <p>تمرين وحل</p>
+            </div>
+            <div class="stat-card">
+                <h3>50+</h3>
+                <p>معلم متخصص</p>
+            </div>
+            <div class="stat-card">
+                <h3>10000+</h3>
+                <p>طالب نشط</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المستويات الدراسية -->
+    <section id="levels" class="levels">
+        <div class="container">
+            <h2>اختر مستواك الدراسي</h2>
+            <div class="levels-grid">
+                <!-- المرحلة الابتدائية -->
+                <div class="level-card" onclick="selectLevel('primary')">
+                    <div class="level-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>المرحلة الابتدائية</h3>
+                    <p>من السنة الأولى إلى السادسة</p>
+                    <div class="level-years">
+                        <span class="year">س1</span>
+                        <span class="year">س2</span>
+                        <span class="year">س3</span>
+                        <span class="year">س4</span>
+                        <span class="year">س5</span>
+                        <span class="year">س6</span>
+                    </div>
+                </div>
+
+                <!-- المرحلة الإعدادية -->
+                <div class="level-card" onclick="selectLevel('intermediate')">
+                    <div class="level-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>المرحلة الإعدادية</h3>
+                    <p>من السنة الأولى إلى الثالثة</p>
+                    <div class="level-years">
+                        <span class="year">س1</span>
+                        <span class="year">س2</span>
+                        <span class="year">س3</span>
+                    </div>
+                </div>
+
+                <!-- المرحلة الثانوية -->
+                <div class="level-card" onclick="selectLevel('secondary')">
+                    <div class="level-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>المرحلة الثانوية</h3>
+                    <p>من السنة الأولى إلى الباكالوريا</p>
+                    <div class="level-years">
+                        <span class="year">س1</span>
+                        <span class="year">س2</span>
+                        <span class="year">باك</span>
+                    </div>
+                </div>
+
+                <!-- المدارس الرائدة -->
+                <div class="level-card premium" onclick="selectLevel('advanced')">
+                    <div class="premium-badge">متقدم</div>
+                    <div class="level-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>المدارس الرائدة</h3>
+                    <p>IB · Cambridge · البرامج الدولية</p>
+                    <div class="level-years">
+                        <span class="year">IB</span>
+                        <span class="year">CAM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الدروس -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2>أحدث الدروس</h2>
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterCourses('all')">الكل</button>
+                <button class="filter-btn" onclick="filterCourses('math')">الرياضيات</button>
+                <button class="filter-btn" onclick="filterCourses('arabic')">اللغة العربية</button>
+                <button class="filter-btn" onclick="filterCourses('science')">العلوم</button>
+                <button class="filter-btn" onclick="filterCourses('french')">الفرنسية</button>
+            </div>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- يتم ملء الدروس هنا بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section class="features">
+        <div class="container">
+            <h2>لماذا أكاديميتي؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-video"></i>
+                    <h3>شروحات فيديو</h3>
+                    <p>فيديوهات شرح واضحة من معلمين متخصصين</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>تمارين تفاعلية</h3>
+                    <p>آلاف التمارين مع حلول فورية وشرح مفصل</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>تتبع التقدم</h3>
+                    <p>رؤية مستوى تقدمك الأكاديمي بسهولة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>شهادات رقمية</h3>
+                    <p>احصل على شهادات عند إنهاء الدروس</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>مجتمع تعليمي</h3>
+                    <p>تفاعل مع الطلاب والمعلمين الآخرين</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>متوفر على الهاتف</h3>
+                    <p>تعلم في أي وقت وأي مكان</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التقييمات -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>آراء الطلاب</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"موقع رائع جداً، ساعدني كثيراً في فهم الدروس"</p>
+                    <h4>محمد علي - سنة 2 إعدادي</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"التمارين والحلول ساعدتني على النجاح في الامتحان"</p>
+                    <h4>فاطمة محمد - سنة 3 إعدادي</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"بصراحة هذا أفضل موقع تعليمي شُفت"</p>
+                    <h4>عمر الدين - باكالوريا</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>أكاديميتي</h4>
+                    <p>منصة تعليمية شاملة لجميع المستويات الدراسية بالمغرب</p>
+                </div>
+                <div class="footer-section">
+                    <h4>الروابط السريعة</h4>
+                    <ul>
+                        <li><a href="#courses">الدروس</a></li>
+                        <li><a href="#levels">المستويات</a></li>
+                        <li><a href="#about">حول الموقع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تابعنا</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 أكاديميتي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal تسجيل الدخول -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة المرور" required>
+                <button type="submit" class="btn-primary">دخول</button>
+            </form>
+            <p>ليس لديك حساب؟ <a href="#" onclick="switchToSignup()">اضغط هنا</a></p>
+        </div>
+    </div>
+
+    <!-- Modal التسجيل -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>إنشاء حساب جديد</h2>
+            <form onsubmit="handleSignup(event)">
+                <input type="text" placeholder="اسمك الكامل" required>
+                <input type="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" placeholder="كلمة المرور" required>
+                <input type="password" placeholder="تأكيد كلمة المرور" required>
+                <select required>
+                    <option value="">اختر مستوى دراسي</option>
+                    <option value="primary">المرحلة الابتدائية</option>
+                    <option value="intermediate">المرحلة الإعدادية</option>
+                    <option value="secondary">المرحلة الثانوية</option>
+                    <option value="advanced">المدارس الرائدة</option>
+                </select>
+                <button type="submit" class="btn-primary">تسجيل</button>
+            </form>
+            <p>هل لديك حساب بالفعل؟ <a href="#" onclick="switchToLogin()">اضغط ه
